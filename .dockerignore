@@ -1,0 +1,41 @@
+# Git
+.git
+.gitignore
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Build artifacts
+server
+server.exe
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test
+*.test
+coverage.txt
+coverage.html
+
+# Documentation
+*.md
+!README.md
+
+# Scripts
+*.sh
+!e2e-test.sh
+
+# Other
+.DS_Store
+tmp/
+temp/
+*.log
+
