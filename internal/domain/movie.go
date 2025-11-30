@@ -16,7 +16,7 @@ type BoxOffice struct {
 	LastUpdated time.Time        `json:"lastUpdated"`
 }
 
-// Movie entity returned to clients
+// Movie entity 返回到客户端
 type Movie struct {
 	ID          string     `json:"id"` // 注意 openapi 要求 string ID
 	Title       string     `json:"title"`

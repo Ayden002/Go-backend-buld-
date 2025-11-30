@@ -34,7 +34,7 @@ func (h *HandlerSet) CreateMovie(c *gin.Context) {
 		return
 	}
 
-	// Step 1 — minimal DB insert
+	//minimal DB insert
 	var movieID int
 	err := h.DB.QueryRow(`
 		INSERT INTO movies (title, genre, release_date)
@@ -51,13 +51,13 @@ func (h *HandlerSet) CreateMovie(c *gin.Context) {
 		return
 	}
 
-	// Step 2 — call boxoffice (忽略错误，降级处理)
+	//call boxoffice (忽略错误，降级处理)
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
 	boxData, _ := h.BoxOffice.FetchFull(ctx, req.Title)
 
-	// Step 3 — merge fields (用户提供的值 > 上游返回的值)
+	//merge fields (用户提供的值 > 上游返回的值)
 	var finalDistributor *string
 	var finalBudget *int64
 	var finalMpaRating *string
@@ -88,7 +88,7 @@ func (h *HandlerSet) CreateMovie(c *gin.Context) {
 		finalMpaRating = boxData.MpaRating
 	}
 
-	// Step 4 — update DB with merged results
+	//— 更新电影记录
 	_, err = h.DB.Exec(`
 		UPDATE movies
 		SET distributor = $1,
@@ -308,7 +308,7 @@ func (h *HandlerSet) ListMovies(c *gin.Context) {
 	})
 }
 
-// POST /movies/{title}/ratings - 提交评分
+//提交评分
 func (h *HandlerSet) SubmitRating(c *gin.Context) {
 	title := c.Param("title")
 	raterID, _ := c.Get("rater_id")
@@ -379,7 +379,7 @@ func (h *HandlerSet) SubmitRating(c *gin.Context) {
 	}
 }
 
-// GET /movies/{title}/rating - 获取评分聚合
+//获取评分聚合
 func (h *HandlerSet) GetRating(c *gin.Context) {
 	title := c.Param("title")
 

@@ -14,7 +14,7 @@ func Connect(dbURL string) *sqlx.DB {
 		log.Fatalf("failed to open db: %v", err)
 	}
 
-	//调整连接池设置
+	//调整连接池设置//这个可选可不选...
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(5)
 	db.SetConnMaxLifetime(30 * time.Minute)
