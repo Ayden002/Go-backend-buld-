@@ -20,7 +20,7 @@ func NewRouter(deps RouterDeps) *gin.Engine {
 
 	// 手动添加必要的中间件
 	r.Use(gin.Logger())
-	// 使用自定义 Recovery，不干扰我们的错误响应
+	// 全局错误处理
 	r.Use(gin.CustomRecovery(func(c *gin.Context, recovered interface{}) {
 		c.AbortWithStatusJSON(500, gin.H{"code": "INTERNAL_ERROR", "message": "Internal server error"})
 	}))

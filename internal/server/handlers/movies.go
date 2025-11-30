@@ -308,7 +308,7 @@ func (h *HandlerSet) ListMovies(c *gin.Context) {
 	})
 }
 
-//提交评分
+// 提交评分
 func (h *HandlerSet) SubmitRating(c *gin.Context) {
 	title := c.Param("title")
 	raterID, _ := c.Get("rater_id")
@@ -379,7 +379,7 @@ func (h *HandlerSet) SubmitRating(c *gin.Context) {
 	}
 }
 
-//获取评分聚合
+// 获取评分聚合
 func (h *HandlerSet) GetRating(c *gin.Context) {
 	title := c.Param("title")
 
