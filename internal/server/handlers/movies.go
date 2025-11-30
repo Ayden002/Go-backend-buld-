@@ -209,21 +209,21 @@ func (h *HandlerSet) ListMovies(c *gin.Context) {
 		}
 	}
 
-	// 类型过滤（大小写不敏感）
+	// 类型过滤
 	if genre != "" {
 		query += fmt.Sprintf(" AND LOWER(genre) = LOWER($%d)", argIdx)
 		args = append(args, genre)
 		argIdx++
 	}
 
-	// 发行商过滤（大小写不敏感）
+	// 发行商过滤
 	if distributor != "" {
 		query += fmt.Sprintf(" AND LOWER(distributor) = LOWER($%d)", argIdx)
 		args = append(args, distributor)
 		argIdx++
 	}
 
-	// 预算过滤（小于等于指定值）
+	// 预算过滤
 	if budgetStr != "" {
 		if budget, err := strconv.ParseInt(budgetStr, 10, 64); err == nil {
 			query += fmt.Sprintf(" AND budget <= $%d", argIdx)

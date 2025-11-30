@@ -1,6 +1,8 @@
 package server
 
 import (
+	//swaggerFiles "github.com/swaggo/files"
+	//ginSwagger "github.com/swaggo/gin-swagger"
 	"interview/internal/server/handlers"
 	"interview/internal/server/middleware"
 
@@ -42,6 +44,8 @@ func NewRouter(deps RouterDeps) *gin.Engine {
 
 	// POST /movies/:title/ratings - 提交评分（需要X-Rater-Id）
 	r.POST("/movies/:title/ratings", raterIDRequired, deps.Handlers.SubmitRating)
+	// Swagger 文档
+	//r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
 

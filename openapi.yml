@@ -11,7 +11,10 @@ info:
     - Rating aggregation returns `{average, count}`, with average rounded to **1 decimal place**.
     - List search supports `q | year | distributor | budget | mpaRating | genre | limit | cursor`, pagination response is fixed as `items[] + nextCursor`.
 servers:
+  - url: http://localhost:8080
+    description: Local development server
   - url: https://api.example.com
+    description: Production server (example)
 tags:
   - name: Movies
   - name: Ratings
@@ -244,7 +247,7 @@ paths:
 components:
   securitySchemes:
     BearerAuth:
-      type: http
+      type: server
       scheme: bearer
       bearerFormat: JWT
     RaterId:
